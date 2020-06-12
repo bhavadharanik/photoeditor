@@ -10,14 +10,14 @@ function Heroin(props) {
   return (
     <Jumbotron className=" p-0">
       <Container fluid={true}>
-        <Row className="justify-content-center">
-          <Col
-            className="text-white text-center py-5 px-4 my-5"
-            style={{
-              backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)`,
-              backgroundSize: "contain",
-            }}
-          >
+        <Row
+          className="justify-content-center"
+          style={{
+            backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)`,
+            backgroundSize: "cover",
+          }}
+        >
+          <Col className="text-black text-center py-5 px-4 my-5">
             {props.title && (
               <h1 className="display-1 font-weight-bolder">{props.title}</h1>
             )}
