@@ -2,15 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import NavBar from "react-bootstrap/Navbar";
-import NavBrand from "react-bootstrap/NavbarBrand";
 import Nav from "react-bootstrap/Nav";
-
-import logo from "./logo.svg";
 import "./App.css";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
+import EditorPage from "./pages/EditorPage";
+import { Helmet } from "react-helmet";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,66 +16,57 @@ class App extends React.Component {
       title: "Bhavadharani",
       headerLinks: [
         { title: "Home", path: "/" },
-        { title: "About", path: "/about" },
-        { title: "Contact", path: "/contact" },
+        { title: "Editor", path: "/app" },
       ],
       home: {
-        title: "Be Infinite",
-        subTitle: "Projects that make a difference",
-        text: "Checkout my projects",
-      },
-      about: {
-        title: "About me",
-      },
-      contact: {
-        title: "Let's Talk",
+        title: "Create Memories With us",
+        subTitle: "Edit your photos",
+        text: "Explore the styles",
       },
     };
   }
   render() {
     return (
-      <Router>
-        <Container className="p-0" fluid={true}>
-          <NavBar className="border-bottom" bg="transparent" expand="lg">
-            <NavBar.Brand>Bhavadharani</NavBar.Brand>
+      <div>
+        <Helmet>
+          <title>Photo Editor</title>
+        </Helmet>
+        <Router>
+          <Container className="p-0" fluid={true}>
+            <NavBar className="border-bottom" bg="transparent" expand="lg">
+              <NavBar.Brand>Photo Editor</NavBar.Brand>
 
-            <NavBar.Toggle className="border-0" aria-controls="navbar-toggle" />
-            <NavBar.Collapse id="navbar-toggle">
-              <Nav className="ml-auto">
-                <Link className="nav-link" to="/">
-                  Home
-                </Link>
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
-              </Nav>
-            </NavBar.Collapse>
-          </NavBar>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <HomePage
-                title={this.state.home.title}
-                subTitle={this.state.home.subTitle}
-                text={this.state.home.text}
+              <NavBar.Toggle
+                className="border-0"
+                aria-controls="navbar-toggle"
               />
-            )}
-          />
-          <Route
-            path="/about"
-            render={() => <AboutPage title={this.state.home.title} />}
-          />
-          <Route
-            path="/contact"
-            render={() => <ContactPage title={this.state.home.title} />}
-          />
-          <Footer />
-        </Container>
-      </Router>
+              <NavBar.Collapse id="navbar-toggle">
+                <Nav className="ml-auto">
+                  <Link className="nav-link" to="/">
+                    Home
+                  </Link>
+                  <Link className="nav-link" to="/app">
+                    Editor
+                  </Link>
+                </Nav>
+              </NavBar.Collapse>
+            </NavBar>
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <HomePage
+                  title={this.state.home.title}
+                  subTitle={this.state.home.subTitle}
+                  text={this.state.home.text}
+                />
+              )}
+            />
+            <Route path="/app" exact render={() => <EditorPage />} />
+            <Footer />
+          </Container>
+        </Router>
+      </div>
     );
   }
 }
